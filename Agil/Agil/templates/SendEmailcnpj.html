@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .header h1 {
+            color: #004085;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #004085;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Agil Sistemas</h1>
+        </div>
+        <div class="content">
+            <p>Usuário <strong>{{ nome_fantasia }}</strong> enviou uma nova requisição.</p>
+            <table>
+                <tr>
+                    <th>Nome Fantasia</th>
+                    <td>{{ nome_fantasia }}</td>
+                </tr>
+                <tr>
+                    <th>Razão Social</th>
+                    <td>{{ razao_social }}</td>
+                </tr>
+                <tr>
+                    <th>CNPJ</th>
+                    <td>{{ cnpj }}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{ status }}</td>
+                </tr>
+                <tr>
+                    <th>CNAE Principal Descrição</th>
+                    <td>{{ cnae_principal_descricao }}</td>
+                </tr>
+                <tr>
+                    <th>CNAE Principal Código</th>
+                    <td>{{ cnae_principal_codigo }}</td>
+                </tr>
+                <tr>
+                    <th>CEP</th>
+                    <td>{{ cep }}</td>
+                </tr>
+                <tr>
+                    <th>Data Abertura</th>
+                    <td>{{ data_abertura }}</td>
+                </tr>
+                <tr>
+                    <th>DDD</th>
+                    <td>{{ ddd }}</td>
+                </tr>
+                <tr>
+                    <th>Telefone</th>
+                    <td>{{ telefone }}</td>
+                </tr>
+                <tr>
+                    <th>Email Empresa</th>
+                    <td>{{ email }}</td>
+                </tr>
+                <tr>
+                    <th>Email Solicitação</th>
+                    <td>{{ emailSolicitado  }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo Logradouro</th>
+                    <td>{{ tipo_logradouro }}</td>
+                </tr>
+                <tr>
+                    <th>Logradouro</th>
+                    <td>{{ logradouro }}</td>
+                </tr>
+                <tr>
+                    <th>Número</th>
+                    <td>{{ numero }}</td>
+                </tr>
+                <tr>
+                    <th>Complemento</th>
+                    <td>{{ complemento }}</td>
+                </tr>
+                <tr>
+                    <th>Bairro</th>
+                    <td>{{ bairro }}</td>
+                </tr>
+                <tr>
+                    <th>Município</th>
+                    <td>{{ municipio }}</td>
+                </tr>
+                <tr>
+                    <th>UF</th>
+                    <td>{{ uf }}</td>
+                </tr>
+                <tr>
+                    <th>Mensagem</th>
+                    <td>{{ mensagem }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <p>Este é um e-mail gerado automaticamente. Por favor, não responda.</p>
+        </div>
+    </div>
+</body>
+</html>

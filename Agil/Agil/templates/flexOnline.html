@@ -1,0 +1,370 @@
+<html lang="en">
+
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    {% load static %}
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/gif" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+  
+    <title>Agil Sistemas</title>
+  
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  
+    <!-- fonts style -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <!-- font awesome style -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'css/Slide.css' %}">
+    <link rel="stylesheet" href="{% static 'css/FlexOnline.css' %}">
+    <!-- responsive style -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <script src="{% static 'js/loader.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  </head>
+
+  <div id="preloader">
+    <div class="loader"></div>
+  </div>
+
+
+
+
+
+
+  {% if EmailInvalido %}
+
+  <script>
+  
+    // Obtém a URL atual
+    let url = new URL(window.location.href);
+  
+    // Define a nova URL (substitua o caminho conforme necessário)
+    url.pathname = '';
+  
+    // Atualiza a URL no navegador sem recarregar a página
+    window.history.replaceState({}, document.title, url.toString());
+    
+    setTimeout(function() {
+      Swal.fire({
+        icon: "warning",
+        title: "Insira um Email Valido!",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
+    }, 3000); // Atraso de 5 segundos
+  </script>
+  
+  {% endif %}
+  
+  {% if solicitAproved %}
+  
+  <script>
+  
+    // Obtém a URL atual
+    let url = new URL(window.location.href);
+  
+    // Define a nova URL (substitua o caminho conforme necessário)
+    url.pathname = '';
+  
+    // Atualiza a URL no navegador sem recarregar a página
+    window.history.replaceState({}, document.title, url.toString());
+    
+    setTimeout(function() {
+      Swal.fire({
+        icon: "info",
+        title: "Sua solicitação está em análise. Em breve, entraremos em contato!",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
+    }, 3000); // Atraso de 5 segundos
+  </script>
+  
+  {% endif %}
+  
+  
+
+
+  
+{% if SendEmailTrue %}
+<script>
+
+  // Obtém a URL atual
+  let url = new URL(window.location.href);
+
+  // Define a nova URL (substitua o caminho conforme necessário)
+  url.pathname = '/flexOnline/';
+
+  // Atualiza a URL no navegador sem recarregar a página
+  window.history.replaceState({}, document.title, url.toString());
+
+
+  setTimeout(function() {
+    Swal.fire({
+      icon: "success",
+      title: "Email enviado com sucesso!",
+      showClass: {
+        popup: `
+          animate__animated
+          animate__fadeInUp
+          animate__faster
+        `
+      },
+      hideClass: {
+        popup: `
+          animate__animated
+          animate__fadeOutDown
+          animate__faster
+        `
+      }
+    });
+  }, 3000); // Atraso de 5 segundos
+</script>
+
+{% endif %}
+
+
+{% if SendEmailFalse %}
+
+<script>
+    // Obtém a URL atual
+    let url = new URL(window.location.href);
+
+    // Define a nova URL (substitua o caminho conforme necessário)
+    url.pathname = '/flexOnline/';
+
+    // Atualiza a URL no navegador sem recarregar a página
+    window.history.replaceState({}, document.title, url.toString());
+      
+    setTimeout(function() {
+      Swal.fire({
+        icon: "error",
+        title: "Nosso serviço está fora, tente novamente mais tarde!",
+        showClass: {
+          popup: `
+            animate__animated
+            animate__fadeInUp
+            animate__faster
+          `
+        },
+        hideClass: {
+          popup: `
+            animate__animated
+            animate__fadeOutDown
+            animate__faster
+          `
+        }
+      });
+    }, 3000); // Atraso de 5 segundos
+</script>
+
+{% endif %}
+
+
+
+
+
+
+  
+  <div class="content">
+    <body>
+
+      <div id="contactModal" class="modal">
+        <div class="modal-content">
+          <span class="close2">&times;</span>
+          <h2 class="modal-title">Entre em Contato</h2>
+          <form id="contactForm" class="contact-form" action="{% url 'enviar_email_2' %}" method="POST">
+            {% csrf_token %}
+            
+            <label for="identification" class="form-label">Identificação:</label>
+            <select id="identification" name="identification" class="form-select" required>
+              <option value="" disabled selected>Selecione...</option>
+              <option value="individual">Indivíduo</option>
+              <option value="company">Empresa</option>
+            </select>
+  
+            <label for="name" class="form-label">Nome:</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+      
+            <label for="cpf" class="form-label" id="cpfLabel" style="display: none;">CPF:</label>
+            <input type="text" id="cpf" name="cpf" class="form-input" style="display: none;" placeholder="000.000.000-00">
+      
+            <label for="cnpj" class="form-label" id="cnpjLabel" style="display: none;">CNPJ:</label>
+            <input type="text" id="cnpj" name="cnpj" class="form-input" style="display: none;" placeholder="00.000.000/0000-00">
+      
+            <label for="companyName" class="form-label">Nome da Empresa:</label>
+            <input type="text" id="companyName" name="companyName" class="form-input">
+      
+            <label for="sector" class="form-label">Setor/Trabalho:</label>
+            <select id="sector" name="sector" class="form-select" required>
+              <option value="" disabled selected>Selecione...</option>
+              <option value="sales">Vendas</option>
+              <option value="marketing">Marketing</option>
+              <option value="development">Desenvolvimento</option>
+              <option value="support">Suporte</option>
+            </select>
+      
+            <label for="email" class="form-label">Email:</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+      
+            <label for="message" class="form-label">Mensagem:</label>
+            <textarea id="message" name="message" class="form-textarea" rows="4" required></textarea>
+      
+            <button type="submit" class="form-button">Enviar</button>
+          </form>
+        </div>
+      </div>
+  
+        <div class="hero_area">
+            <!-- header section strats -->
+              <header class="header_section">
+              <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg custom_nav-container ">
+                  <header class="menu__wrapper">
+                    <div class="menu__bar">
+                        <a href="{% url 'index' %}" title="Home" aria-label="home" class="logo">
+                                  <div class="logo-container">
+                                <img src="{% static 'img/logo.png' %}" alt="Logo da Empresa" class="logo">
+                            </div>
+                        </a>
+                    </div>
+                </header>
+                </nav>
+              </div>
+            </header>
+            <!-- end header section -->
+            <!-- slider section -->
+            <section class="slider_section ">
+              <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="container ">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="detail-box">
+                            <h1 class="CarrosseuH1">ERP Flex Online</h1>
+                            <p class="PContainer" style="font-size: 21px;">
+                                Flex Online é uma solução ERP inovadora e flexível, projetada para atender às necessidades dinâmicas do seu negócio. </span> 
+                                <br>
+                                Com uma interface intuitiva e recursos poderosos, ele simplifica a gestão de processos e informações 
+                                <br>
+                                permitindo que você se concentre no crescimento e na eficiência da sua empresa.
+                            </p>
+                            <div class="btn-box">
+                              <a id="openContactModalBtn"  class="btn-2">
+                                Entre em Contato
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="row">
+                            <div class=" col-lg-10 mx-auto">
+                              <div class="img-box">
+                                <img src="{% static 'img/BannerFinal.png' %}" alt="">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- end slider section -->
+        </div>
+
+        <div class="presentation-container">
+        <div class="video-container">
+            <video id="systemVideo" src="{% static 'video/VideoFlex.mp4' %}" autoplay muted loop></video>
+
+        </div>
+        <div class="text-container">
+            <h1>Sistema Flex Online</h1>
+            <p>O Sistema Flex Online é uma solução ERP desenvolvida para atender às necessidades diárias da sua empresa. <br> Com ele, você poderá simplificar a gestão empresarial, garantindo que todas as operações funcionem de maneira eficiente e integrada. <br> Nossa plataforma permite que você:</p>
+            <ul>
+                <li>Gerencie todos os processos em um ambiente unificado</li>
+                <li>Acesse relatórios detalhados em tempo real para uma gestão informada</li>
+                <li>Integre facilmente com outros sistemas, garantindo flexibilidade e adaptação</li>
+                <li>Automatize tarefas repetitivas para aumentar a eficiência operacional</li>
+                <li>Controle o estoque com precisão, evitando rupturas e excessos</li>
+                <li>Gerencie as finanças com ferramentas avançadas de contabilidade e previsão</li>
+                <li>Administre projetos com planejamento e acompanhamento de tarefas em tempo real</li>
+                <li>Assegure a conformidade com regulamentações através de auditorias automáticas</li>
+				<button class="flexButtonOpen" onclick="openLink()">Clique aqui para acessar o FlexOnline</button>
+            </ul>
+        </div>
+        </div>
+    </body>
+  </div>
+  
+  
+  <script>
+	function openLink() {
+		window.open("https://flextrade.agilsistemas.inf.br/", "_blank");
+	}
+  </script>
+  
+
+  <script>
+
+    // Obtém o botão de fechar
+    var buttonClose = document.getElementById('closeMOdalFlex');
+
+      // Verifica se o botão de fechar existe
+      if (buttonClose) {
+          // Adiciona um manipulador de evento de clique ao botão de fechar
+          buttonClose.addEventListener('click', function() {
+              // Obtém o modal
+              var modal = document.getElementById('contactModal');
+              // Verifica se o modal existe
+              if (modal) {
+                  // Define o estilo display do modal como 'none' para escondê-lo
+                  modal.style.display = 'none';
+              }
+          });
+      } else {
+          console.error("O botão de fechar com ID 'closeMOdalFlex' não foi encontrado.");
+    }
+
+  </script>
+  
+
+  <script src="{% static 'js/formatModal.js' %}"></script>
+  <script src="{% static 'js/flexOnlinePage.js' %}"></script>
+  <script src="{% static 'js/modal.js' %}"></script>
+</html>

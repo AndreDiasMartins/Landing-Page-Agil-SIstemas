@@ -1,0 +1,124 @@
+.presentation-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #000428, #004e92);
+    box-sizing: border-box;
+    overflow-y: auto; /* Adicionado para permitir rolagem no conteúdo longo */
+}
+
+.video-container, .text-container {
+    width: 100%;
+    max-width: 100%; /* Evita que o texto ultrapasse a largura da tela */
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.video-container {
+    overflow: hidden;
+}
+
+
+.video-container.fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background-color: #000;
+    border-radius: 0; /* Remove os cantos arredondados ao expandir */
+}
+
+.video-container.fullscreen video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+video {
+    width: 100%;
+    height: auto;
+    object-fit: cover;  
+    border-radius: 15px;
+    opacity: 1;
+}
+
+.text-container {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    text-align: center;
+    overflow-y: auto; /* Adicionado para permitir rolagem dentro do container */
+    max-height: 100%; /* Garante que o texto não ultrapasse a altura disponível */
+    position: relative;
+    left: 20px;
+}
+
+.text-container h1 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #ffffff;
+    word-wrap: break-word; /* Garante que palavras longas não ultrapassem a largura */
+}
+
+.text-container p {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    word-wrap: break-word; /* Garante que palavras longas não ultrapassem a largura */
+}
+
+.text-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    text-align: left;
+}
+
+.text-container li {
+    margin-bottom: 10px;
+    font-size: 1em;
+    word-wrap: break-word; /* Garante que palavras longas não ultrapassem a largura */
+}
+
+/* Ajustes para telas maiores */
+@media (min-width: 768px) {
+    .presentation-container {
+        flex-direction: row;
+    }
+
+    .video-container, .text-container {
+        width: 48%;
+        margin-bottom: 0;
+    }
+
+    .text-container {
+        padding: 30px;
+        text-align: left;
+    }
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 767px) {
+    .text-container h1 {
+        font-size: 1.8em;
+    }
+
+    .text-container p,
+    .text-container li {
+        font-size: 1em;
+        overflow: auto;
+    }
+    .text-container {
+        left: 0 !important;
+
+    }
+
+    .slider_section .img-box img{
+        width: 170%;
+        right: 114px !important;
+    } 
+}
